@@ -1,0 +1,25 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'LoginApp:home' %}" style="border: none;" ><img class="img-fluid img-thumbnail" width="80" id="logo" src="{% static 'img/logo.png' %}" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'LoginApp:home' %}">Home</a>
+          </li>
+
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'PassApp:profile' %}">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary" href="#">Logout</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+</nav>

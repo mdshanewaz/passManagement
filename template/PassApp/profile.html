@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title_block %} {{ title }} {% endblock %}
+
+{% block body_block %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">#SL</th>
+                            <th scope="col">Platform Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Credential</th>
+                            <th scope="col">Backup Email or Num</th>
+                            <th scope="col">Platform Link</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for credential in credentials %}
+                        <tr class="text-center">
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ credential.platform_name }}</td>
+                            <td>{{ credential.username }}</td>
+                            <td>{{ credential.credential }}</td>
+                            <td>{{ credential.backup_mail_num }}</td>
+                            <td><a href="{{ credential.login_link }}" target="_blank"><i class="fas fa-link"></i></a></td>
+                            <td><a href="{% url 'PassApp:edit' credential.id %}" class="text-warning"><i class="fas fa-edit"></i></a></td>
+                            <td><a href="{% url 'PassApp:detail' credential.id %}"  class="text-danger"><i class="fa-solid fa-trash"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a class="btn btn-primary mb-3" href="{% url 'PassApp:add' %}"><i class="fa-solid fa-plus"></i> Add New Username & Credential</a>
+            </div>
+        </div>
+    </div>
+{% endblock %} 
